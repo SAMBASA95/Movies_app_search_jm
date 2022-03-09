@@ -13,13 +13,13 @@ function App() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    searchMovies("Spiderman");
+    searchMovies("Batman");
   }, [])
 
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
-    console.log(data.Search)
+    // console.log(data.Search)
     setMovies(data.Search);
 
   }
@@ -43,7 +43,7 @@ function App() {
       {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} key={movie.imdbID}/>
           ))}
         </div>
       ) : (
